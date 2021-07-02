@@ -1,17 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, Pressable, Platform, TouchableOpacity } from 'react-native'
 
-function selectBtn() {
-    if (Platform.OS === 'android') {
 
-    } else if (Platform.OS === 'ios') {
-        return (
-            <Pressable style={styles.button} onPress={onPress}>
-                <Text style={styles.text}>{title}</Text>
-            </Pressable>
-        )
-    }
-}
 const Button = (props) => {
     const { onPress, title } = props;
     return (
