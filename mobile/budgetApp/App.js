@@ -15,30 +15,30 @@ const Stack = createStackNavigator();
 const App = () => {
   return (
     <NavigationContainer>
-      {/* <ThemeProvider> */}
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} options={{headerShown: false}}/>
-        <Stack.Screen name="Goals" component={Goals} options={{
-          headerShown: false, // true -> false
-          headerLargeTitle: true,
-          headerLargeTitleStyle: {
-            fontSize: 38,
-            color: "#1D1D1DF0"
-          },
-          headerStyle: {
-            backgroundColor: "#1D1D1DF0",
-            height: 100
-          },
-          headerTitleStyle: {
-            fontSize: 30,
-            color: "#FFFFFF",
-            fontWeight: "bold",
-            paddingTop: 30
-          },
-        }} />
+      <ThemeProvider>
+        <Stack.Navigator>
+          {/* <Stack.Screen name="Home" component={Home} options={{headerShown: false}}/> */}
+          <Stack.Screen name="Goals" component={Goals} options={{
+            headerShown: false, // true -> false
+            headerLargeTitle: true,
+            headerLargeTitleStyle: {
+              fontSize: 38,
+              color: "#1D1D1DF0"
+            },
+            headerStyle: {
+              backgroundColor: "#1D1D1DF0",
+              height: 100
+            },
+            headerTitleStyle: {
+              fontSize: 30,
+              color: "#FFFFFF",
+              fontWeight: "bold",
+              paddingTop: 30
+            },
+          }} />
 
-      </Stack.Navigator>
-      {/* </ThemeProvider> */}
+        </Stack.Navigator>
+      </ThemeProvider>
     </NavigationContainer>
   );
 };

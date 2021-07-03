@@ -1,19 +1,15 @@
 import React, { useState } from 'react';
 import { ViewBase, StyleSheet, Text, View, Alert, StatusBar, SafeAreaView, Dimensions, TextInput } from 'react-native';
 import CustomButton from '../components/Button'
-import { ThemeProvider, TextField } from 'react-native-ios-kit';
+// import { ThemeProvider, TextField } from 'react-native-ios-kit';
 
 const { height } = Dimensions.get('window')
 
 
 
 const Goals = () => {
-    const [text, setText] = useState('Text');
+    const [text, setText] = useState('');
 
-    // const changeHandler = (val) => {
-    //     setText(val)
-    //     // console.log('oin')
-    // }
 
     return (
         // <ThemeProvider>
@@ -34,14 +30,16 @@ const Goals = () => {
             </Text>
             {/* <TextField 
                 placeholder={'What is Your Goal?'}
-                onValueChange={changeHandler()}
+                onValueChange={setText}
                 /> */}
 
             <TextInput
                 style={styles.input}
-                placeholder='What is Your Goal'
+                placeholder="What is Your Goal?"
+                placeholderTextColor="#EBEBF54D"
                 onChangeText={setText}
                 value = {text}
+                clearButtonMode="always"
             />
 
         </SafeAreaView>
@@ -83,7 +81,8 @@ const styles = StyleSheet.create({
         height: 40,
         margin: 12,
         borderWidth: 1,
-        color: "#FFF"
+        color: "#FFFFFF",
+        backgroundColor: "#000000"
     }
 })
 
