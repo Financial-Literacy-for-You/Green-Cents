@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { ViewBase, StyleSheet, Text, View, Alert, StatusBar, SafeAreaView, Dimensions, TextInput } from 'react-native';
 import CustomButton from '../components/Button'
-// import { ThemeProvider, TextField } from 'react-native-ios-kit';
+import Header from '../components/Header'
+import Space from '../components/Space'
+import CustomTextInput from '../components/CustomTextInput';
 
-const { height } = Dimensions.get('window')
+// import { ThemeProvider, TextField } from 'react-native-ios-kit';
 
 
 
 const Goals = () => {
-    const [text, setText] = useState('');
 
 
     return (
@@ -19,29 +20,15 @@ const Goals = () => {
                 backgroundColor="#1D1D1D"
                 barStyle="default"
             />
-            <View style={styles.header}>
-                <Text style={styles.headerText}>
-                    Goals
-                </Text>
-            </View>
-            <View style={styles.space}></View>
+            <Header title="Goals"></Header>
+            <Space props={{
+                width: 40,
+                height: 40
+            }}></Space>
             <Text style={styles.inputHeaderText}>
                 set your goals
             </Text>
-            {/* <TextField 
-                placeholder={'What is Your Goal?'}
-                onValueChange={setText}
-                /> */}
-
-            <TextInput
-                style={styles.input}
-                placeholder="What is Your Goal?"
-                placeholderTextColor="#EBEBF54D"
-                onChangeText={setText}
-                value = {text}
-                clearButtonMode="always"
-            />
-
+            <CustomTextInput placeholder="What is your Goal?"></CustomTextInput>
         </SafeAreaView>
         // </ThemeProvider>
     )
@@ -53,36 +40,11 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#1D1D1D'
     },
-    header: {
-        backgroundColor: "#1D1D1D",
-        height: height * 0.173,
-        // borderBottomColor: "#00ff00",
-        borderBottomColor: "#FFFFFF26",
-        borderBottomWidth: StyleSheet.hairlineWidth
-    },
-    headerText: {
-        color: "#FFFFFF",
-        fontWeight: "bold",
-        fontSize: 38,
-        paddingLeft: 16,
-        paddingTop: height * 0.17 * 0.55
-    },
     inputHeaderText: {
         color: "#EBEBF599",
         textTransform: 'uppercase',
         paddingLeft: 15.5,
         paddingRight: 15.5
-    },
-    space: {
-        width: 40,
-        height: 40
-    },
-    input: {
-        height: 40,
-        margin: 12,
-        borderWidth: 1,
-        color: "#FFFFFF",
-        backgroundColor: "#000000"
     }
 })
 
