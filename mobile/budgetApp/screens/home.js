@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Image, Alert, SafeAreaView, } from 'react-native'
+import { View, StyleSheet, Image, Alert, SafeAreaView, NativeAppEventEmitter, } from 'react-native'
 import CustomButton from '../components/Button'
 import CustomStatusBar from '../components/CustomStatusBar'
 import Space from '../components/Space'
@@ -12,6 +12,8 @@ const Home = ({ navigation }) => {
       navigation.navigate('Goals')
     } else if (nav === 'flydesc') {
       navigation.navigate('FlyDesc')
+    } else if (nav === 'budgeting') { 
+      navigation.navigate('Budgeting')
     }
   }
   return (
@@ -29,7 +31,7 @@ const Home = ({ navigation }) => {
           width: 20,
           height: 20
         }}></Space>
-        <CustomButton style={styles.button} title="What is Budgeting?" onPress={() => Alert.alert('who are we page')}></CustomButton>
+        <CustomButton style={styles.button} title="What is Budgeting?" onPress={() => navigationHandler('budgeting')}></CustomButton>
       </View>
 
     </SafeAreaView>

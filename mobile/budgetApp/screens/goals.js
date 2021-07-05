@@ -14,9 +14,12 @@ function store(goalText, saveText) {
     console.log(`set ${goalText}`)
     MMKV.set('saveText', "" + saveText)
     console.log(`set ${saveText}`)
-    console.log(MMKV.getString(('goalText')))
-    console.log(MMKV.getString(('saveText')))
-
+    MMKV.set('goalsSet', true)
+    console.log(`set ${true}`)
+    console.log(MMKV.getString('goalText'))
+    console.log(MMKV.getString('saveText'))
+    console.log(MMKV.getString('saveText'))
+    console.log(MMKV.getBoolean('goalsSet'))
 }
 
 const { width } = Dimensions.get('window')

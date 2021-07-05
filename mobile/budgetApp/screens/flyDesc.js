@@ -5,11 +5,11 @@ import Header from '../components/Header'
 import Space from '../components/Space'
 import CustomButton from '../components/Button'
 
-const flyDesc = ({ navigation }) => {
+const flyDesc = ({navigation}) => {
     return (
         <SafeAreaView style={styles.container}>
             <CustomStatusBar></CustomStatusBar>
-            <Header title="Who Are We?"></Header>
+            <Header title="Who Are We?" back={true} onPressAction={() => navigation.navigate('Home')}></Header>
             <Space props={{
                 width: 20,
                 height: 20
@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     text: {
         color: "#FFFFFF",
         paddingLeft: "5%",
+        paddingRight: "5%",
         lineHeight: 20
     },
     btnContainer: {
