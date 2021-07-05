@@ -1,7 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, Pressable, Platform, TouchableOpacity } from 'react-native'
 
-
 const Button = (props) => {
     const { onPress, title } = props;
     return (

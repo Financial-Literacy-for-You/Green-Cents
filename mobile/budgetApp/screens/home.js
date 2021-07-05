@@ -6,7 +6,14 @@ import Space from '../components/Space'
 
 // render elemtn conditionally: https://stackoverflow.com/questions/44046037/if-else-statement-inside-jsx-reactjs
 
-const Home = () => {
+const Home = ({ navigation }) => {
+  const navigationHandler = (nav) => {
+    if (nav === "goals") {
+      navigation.navigate('Goals')
+    } else if (nav === 'flydesc') {
+      navigation.navigate('FlyDesc')
+    }
+  }
   return (
     <SafeAreaView style={styles.container}>
       <CustomStatusBar></CustomStatusBar>
@@ -14,10 +21,10 @@ const Home = () => {
         <Image source={require('../assets/flyWhiteLogo.png')} style={styles.img}></Image>
       </View>
       <View style={styles.btnContainer}>
-        <CustomButton style={styles.button} title="Get Started" onPress={() => Alert.alert('next page')}></CustomButton>
+        <CustomButton style={styles.button} title="Get Started" onPress={() => navigationHandler('goals')}></CustomButton>
       </View>
       <View style={styles.bottomBtnContainer}>
-        <CustomButton style={styles.button} title="Who are We?" onPress={() => Alert.alert('who are we page')}></CustomButton>
+        <CustomButton style={styles.button} title="Who are We?" onPress={() => navigationHandler('flydesc')}></CustomButton>
         <Space props={{
           width: 20,
           height: 20

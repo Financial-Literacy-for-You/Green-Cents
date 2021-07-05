@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from './screens/home'
 import Goals from './screens/goals'
+import FlyDesc from './screens/flyDesc'
 // render elemtn conditionally: https://stackoverflow.com/questions/44046037/if-else-statement-inside-jsx-reactjs
 
 const Stack = createStackNavigator();
@@ -14,28 +15,11 @@ const Stack = createStackNavigator();
 const App = () => {
   return (
     <NavigationContainer>
-        <Stack.Navigator>
-          {/* <Stack.Screen name="Home" component={Home} options={{headerShown: false}}/> */}
-          <Stack.Screen name="Goals" component={Goals} options={{
-            headerShown: false, // true -> false
-            headerLargeTitle: true,
-            headerLargeTitleStyle: {
-              fontSize: 38,
-              color: "#1D1D1DF0"
-            },
-            headerStyle: {
-              backgroundColor: "#1D1D1DF0",
-              height: 100
-            },
-            headerTitleStyle: {
-              fontSize: 30,
-              color: "#FFFFFF",
-              fontWeight: "bold",
-              paddingTop: 30
-            },
-          }} />
-
-        </Stack.Navigator>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+        <Stack.Screen name="Goals" component={Goals} options={{ headerShown: false }} />
+        <Stack.Screen name="FlyDesc" component={FlyDesc} options={{ headerShown: false }} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };
