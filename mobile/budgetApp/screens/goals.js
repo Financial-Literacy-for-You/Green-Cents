@@ -1,39 +1,40 @@
 import React, { useState } from 'react';
-import { ViewBase, StyleSheet, Text, View, Alert, StatusBar, SafeAreaView, Dimensions, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Alert, StatusBar, SafeAreaView, Dimensions, TextInput, TouchableOpacity } from 'react-native';
 import CustomButton from '../components/Button'
 import Header from '../components/Header'
 import Space from '../components/Space'
 import CustomTextInput from '../components/CustomTextInput';
+import CustomStatusBar from '../components/CustomStatusBar';
 import CurrencyInput from 'react-native-currency-input';
 import { MMKV } from 'react-native-mmkv';
 
 // import { ThemeProvider, TextField } from 'react-native-ios-kit';
 
-function store(goalText, saveText) {
-    MMKV.set('goalText', goalText)
-    console.log(`set ${goalText}`)
-    MMKV.set('saveText', "" + saveText)
-    console.log(`set ${saveText}`)
-    MMKV.set('goalsSet', true)
-    console.log(`set ${true}`)
-    console.log(MMKV.getString('goalText'))
-    console.log(MMKV.getString('saveText'))
-    console.log(MMKV.getString('saveText'))
-    console.log(MMKV.getBoolean('goalsSet'))
+function store(goalText, saveText, navigation) {
+    if (goalText == undefined || saveText == undefined || goalText == "" || saveText == "") {
+        Alert.alert('Make sure you enter values for both fields!')
+    } else {
+        MMKV.set('goalText', goalText) // goals
+        console.log(`set ${goalText}`)
+        MMKV.set('saveText', "" + saveText) // amount to save
+        console.log(`set ${saveText}`)
+        MMKV.set('goalsSet', true)  // whether goals & amoutn to save have been set
+        console.log(`set ${true}`)
+        console.log(MMKV.getString('goalText'))
+        console.log(MMKV.getString('saveText'))
+        // console.log(MMKV.getString('saveText'))
+        console.log(MMKV.getBoolean('goalsSet'))
+        navigation.navigate('Expenses')
+    }
 }
 
-const { width } = Dimensions.get('window')
-const Goals = () => {
+const Goals = ({ navigation }) => {
 
     const [goalText, goalSetText] = useState('');
     const [saveText, saveSetText] = useState('');
     return (
         <SafeAreaView style={styles.container}>
-            <StatusBar
-                animated={true}
-                backgroundColor="#1D1D1D"
-                barStyle="default"
-            />
+            <CustomStatusBar></CustomStatusBar>
             <Header title="Goals"></Header>
             <Space props={{
                 width: 40,
@@ -77,7 +78,7 @@ const Goals = () => {
                 <TouchableOpacity
                     style={styles.button}
                     activeOpacity={.7}
-                    onPress={() => store(goalText, saveText)}
+                    onPress={() => store(goalText, saveText, navigation, Alert)}
                 >
                     <Text style={styles.text}>Next</Text>
                 </TouchableOpacity>
