@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { SafeAreaView, View, Text, StyleSheet, Dimensions, FlatList, Modal, TouchableOpacity, Alert, TextInput } from 'react-native'
+import { SafeAreaView, View, Text, StyleSheet, Dimensions, FlatList, Modal, TouchableOpacity, Alert, TextInput, ScrollView } from 'react-native'
 import Header from '../components/Header'
 import CustomStatusBar from '../components/CustomStatusBar'
 import CustomButton from '../components/Button'
@@ -135,14 +135,14 @@ const Expenses = () => {
                     width: 10,
                     height: 10
                 }}></Space>
-                <View>
+                <View style={{backgroundColor: 'blue'}}>
                     <FlatList
                         data={appData.transactionHistory}
+                        scrollEnabled={true}
                         renderItem={({ item }) => (
                             <TransactionItem item={item} onPress={() => deleteHandler(item.key, appData)}></TransactionItem>
                         )}
                     />
-
                 </View>
             </View>
 

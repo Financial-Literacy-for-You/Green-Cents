@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, Dimensions } from 'react-native';
 
 const TransactionItem = (props) => {
-    const { item, appData, onPress} = props
+    const { item, appData, onPress } = props
     var strAmount = "" + item.amount
     // function deleteHandler(key, appData) {
     //     appData.transactionHistory = appData.transactionHistory.filter(transac => transac.key != key)
@@ -13,7 +13,7 @@ const TransactionItem = (props) => {
     return (
         <TouchableOpacity style={styles.box} onPress={onPress}>
             <View style={{ flexDirection: "row" }}>
-                <View style={styles.boxTextView}>
+                <View>
                     <Text style={styles.title}>
                         {item.title}
                     </Text>
@@ -36,9 +36,6 @@ const styles = StyleSheet.create({
         color: "#EBEBF599",
         marginLeft: "2%"
     },
-    boxTextView: {
-        marginRight: "90%"
-    },
     box: {
         backgroundColor: "#000000",
         borderWidth: 5,
@@ -49,10 +46,14 @@ const styles = StyleSheet.create({
     verticalLineGreen: {
         width: 1,
         backgroundColor: "#62CA8E",
+        flexDirection: 'row',
+        marginLeft: 'auto'
     },
     verticalLineRed: {
         width: 1,
         backgroundColor: "#B84A48",
+        flexDirection: 'row',
+        marginLeft: 'auto'
     }
 })
 export default TransactionItem;
