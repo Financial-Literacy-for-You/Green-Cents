@@ -26,7 +26,8 @@ function store(goalText, saveText, navigation, goalSetText, saveSetText) {
         saveText = "" + saveText
         var writeData = {
             goalText: goalText,
-            goalSaveAmount: saveText.includes('.') ? saveText : saveText + '.00',
+            // goalSaveAmount: saveText.includes('.') ? saveText : saveText + '.00',
+            goalSaveAmount: saveText,
             fieldsSet: true,
             balance: 0,
             // balance: 400,
@@ -50,23 +51,13 @@ function store(goalText, saveText, navigation, goalSetText, saveSetText) {
         MMKV.set('applicationData', JSON.stringify(writeData))
         console.log('set')
         console.log(JSON.parse(MMKV.getString('applicationData')))
-        // MMKV.set('goalText', goalText) // goals
-        // console.log(`set ${goalText}`)
-        // MMKV.set('saveText', "" + saveText) // amount to save
-        // console.log(`set ${saveText}`)
-        // MMKV.set('goalsSet', true)  // whether goals & amoutn to save have been set
-        // console.log(`set ${true}`)
-        // console.log(MMKV.getString('goalText'))
-        // console.log(MMKV.getString('saveText'))
-        // // console.log(MMKV.getString('saveText'))
-        // console.log(MMKV.getBoolean('goalsSet'))
 
-        // navigation.navigate('Expenses')
         navigation.reset({
             index: 0,
             routes: [
                 {
-                    name: 'Expenses'
+                    name: 'Expenses',
+                    name: 'Home'
                 }
             ]
         })

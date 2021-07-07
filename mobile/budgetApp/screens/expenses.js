@@ -10,6 +10,8 @@ import CurrencyInput from 'react-native-currency-input';
 import SegmentedControlTab from "react-native-segmented-control-tab";
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid'
+import ConfettiCannon from 'react-native-confetti-cannon';
+import Icon from 'react-native-vector-icons/Ionicons'
 
 const { height, width } = Dimensions.get('window')
 
@@ -20,6 +22,8 @@ const Expenses = ({ navigation }) => {
     const [modalTransacName, setModalTransacName] = useState('')
     const [modalTransacAmount, setModalTransacAmount] = useState('')
     const [modalTransacType, setModalTransacType] = useState(null)
+    const [confettiVisible, setConfettiVisible] = useState(false)
+    const [successModal, setSuccessModalVisible] = useState(false)
 
     function deleteHandler(key, appData) {
         var toBeDeleted = appData.transactionHistory.filter(transac => transac.key == key)[0]
@@ -39,7 +43,13 @@ const Expenses = ({ navigation }) => {
         setAppData(JSON.parse(MMKV.getString('applicationData')))
         console.log('state set')
         console.log(MMKV.getString('applicationData'))
-        // check if bal = goal
+
+        if ((appData.balance == appData.goalSaveAmount)) {
+            if (appData.balance != null && appData.balance != 0) {
+                setSuccessModalVisible(true)
+                setConfettiVisible(true)
+            }
+        }
     }
 
     function addTransacHandler(appData, modalTransacName, modalTransacAmount, modalTransacType, setModalOpen) {
@@ -84,6 +94,12 @@ const Expenses = ({ navigation }) => {
         setModalTransacName("")
         setModalTransacAmount("")
         setModalTransacType(null)
+        if ((appData.balance == appData.goalSaveAmount)) {
+            if (appData.balance != null && appData.balance != 0) {
+                setSuccessModalVisible(true)
+                setConfettiVisible(true)
+            }
+        }
     }
 
     function resetData(appData, navigation) {
@@ -214,6 +230,33 @@ const Expenses = ({ navigation }) => {
                     />
                 </View>
             </View>
+
+                {confettiVisible && <ConfettiCannon
+                    count={200}
+                    origin={{ x: -10, y: 0 }}
+                    fadeOut={true}
+                />}
+                <View style={styles.modalCenteredView}>
+                    <Modal
+                        animationType="slide"
+                        transparent={true}
+                        visible={successModal}
+                        // visible={true}
+                    >
+                        <View style={styles.successModalView}>
+                            <Icon
+                            style={{marginLeft: "auto"}}
+                            name='ios-close'
+                            size={30}
+                            color="#FFF"
+                            onPress={() => setSuccessModalVisible(false)}
+                            />
+                            <Text style={{textAlign: "center", color: "#FFF"}}>
+                                <Text style={{fontWeight: "bold", fontSize: 20}}>Success!</Text>{"\n\n"}Congratulations on reaching your goal:{"\n"}<Text style={{fontWeight: "bold"}}>{appData.goalText}</Text>{"\n\n"}Press the "Start Over" button to set another goal!
+                            </Text>
+                        </View>
+                    </Modal>
+                </View>
 
             <Modal visible={modalOpen} animationType='slide'>
                 <View style={styles.modalContainer}>
@@ -427,6 +470,29 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         color: "#FFFFFF",
         backgroundColor: "#000000"
+    },
+    modalCenteredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 22,
+    },
+    successModalView: {
+        margin: 20,
+        // backgroundColor: "#9B9B9B",
+        backgroundColor: "#000",
+        borderRadius: 20,
+        padding: 35,
+        alignItems: "center",
+        shadowColor: "#FFF",
+        shadowOffset: {
+          width: 0,
+          height: 3
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
+        
     }
 })
 export default Expenses;
