@@ -8,38 +8,44 @@ import CustomStatusBar from '../components/CustomStatusBar';
 import CurrencyInput from 'react-native-currency-input';
 import { MMKV } from 'react-native-mmkv';
 
-import 'react-native-get-random-values';
-import { v4 as uuidv4 } from 'uuid'
-
 // import { ThemeProvider, TextField } from 'react-native-ios-kit';
 
-function store(goalText, saveText, navigation) {
+function store(goalText, saveText, navigation, goalSetText, saveSetText) {
     if (goalText == undefined || saveText == undefined || goalText == "" || saveText == "" || "" + saveText == "0") {
-        Alert.alert('Make sure you enter values for both fields! & that fields are not 0')
+        Alert.alert(
+            'Check Your Values!',
+            'Make sure you enter values for both fields and that fields are not 0!',
+            [
+                {
+                    text: "OK",
+                    style: 'default'
+                }
+            ]
+        )
     } else {
         saveText = "" + saveText
         var writeData = {
             goalText: goalText,
             goalSaveAmount: saveText.includes('.') ? saveText : saveText + '.00',
             fieldsSet: true,
-            // balance: 0,
-            balance: 400,
-            // totalIncome: 0,
-            totalIncome: 500,
-            // totalExpense: 0,
-            totalExpense: 100,
-            // transactionHistory: []
-            transactionHistory: [{
-                // key: uuidv4(),
-                key: uuidv4(),
-                title: "cash",
-                amount: 500
-            }, {
-                // key: uuidv4(),
-                key: uuidv4(),
-                title: "arrested",
-                amount: -100
-            }]
+            balance: 0,
+            // balance: 400,
+            totalIncome: 0,
+            // totalIncome: 500,
+            totalExpense: 0,
+            // totalExpense: 100,
+            transactionHistory: []
+            // transactionHistory: [{
+            //     // key: uuidv4(),
+            //     key: uuidv4(),
+            //     title: "cash",
+            //     amount: 500
+            // }, {
+            //     // key: uuidv4(),
+            //     key: uuidv4(),
+            //     title: "arrested",
+            //     amount: -100
+            // }]
         }
         MMKV.set('applicationData', JSON.stringify(writeData))
         console.log('set')
@@ -54,7 +60,18 @@ function store(goalText, saveText, navigation) {
         // console.log(MMKV.getString('saveText'))
         // // console.log(MMKV.getString('saveText'))
         // console.log(MMKV.getBoolean('goalsSet'))
-        navigation.navigate('Expenses')
+
+        // navigation.navigate('Expenses')
+        navigation.reset({
+            index: 0,
+            routes: [
+                {
+                    name: 'Expenses'
+                }
+            ]
+        })
+        goalSetText('')
+        saveSetText('')
     }
 }
 
@@ -109,7 +126,7 @@ const Goals = ({ navigation }) => {
                 <TouchableOpacity
                     style={styles.button}
                     activeOpacity={.7}
-                    onPress={() => store(goalText, saveText, navigation, Alert)}
+                    onPress={() => store(goalText, saveText, navigation, goalSetText, saveSetText)}
                 >
                     <Text style={styles.text}>Next</Text>
                 </TouchableOpacity>

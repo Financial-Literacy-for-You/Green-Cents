@@ -13,7 +13,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 const { height, width } = Dimensions.get('window')
 
-const Expenses = () => {
+const Expenses = ({ navigation }) => {
     const [appData, setAppData] = useState(JSON.parse(MMKV.getString('applicationData')))
     // setAppData(JSON.parse(MMKV.getString('applicationData')))
     const [modalOpen, setModalOpen] = useState(false)
@@ -25,11 +25,14 @@ const Expenses = () => {
         var toBeDeleted = appData.transactionHistory.filter(transac => transac.key == key)[0]
         appData.transactionHistory = appData.transactionHistory.filter(transac => transac.key != key)
         appData.balance -= toBeDeleted.amount
+        appData.balance = Math.round((appData.balance + Number.EPSILON) * 100) / 100
         toBeDeleted.amount = "" + toBeDeleted.amount
         if (toBeDeleted.amount.includes('-')) {
             appData.totalExpense -= Math.abs(toBeDeleted.amount)
+            appData.totalExpense = Math.round((appData.totalExpense + Number.EPSILON) * 100) / 100
         } else if (!toBeDeleted.amount.includes('-')) {
             appData.totalIncome -= Math.abs(toBeDeleted.amount)
+            appData.totalIncome = Math.round((appData.totalIncome + Number.EPSILON) * 100) / 100
         }
         MMKV.set('applicationData', JSON.stringify(appData))
         console.log('set')
@@ -40,17 +43,33 @@ const Expenses = () => {
     }
 
     function addTransacHandler(appData, modalTransacName, modalTransacAmount, modalTransacType, setModalOpen) {
+        if (modalTransacAmount === 0) {
+            Alert.alert(
+                'Check Your Values!',
+                'Make sure you enter values for both fields and that fields are not 0!',
+                [
+                    {
+                        text: "OK",
+                        style: 'default'
+                    }
+                ]
+            )
+            return;
+        }
         var amountCleaned = 0
         console.log(modalTransacType) // 0, 1
         if (modalTransacType == 0) { // income
             amountCleaned = Math.abs(modalTransacAmount)
             appData.totalIncome += amountCleaned
+            appData.totalIncome = Math.round((appData.totalIncome + Number.EPSILON) * 100) / 100
 
         } else if (modalTransacType == 1) {
-            amountCleaned = parseInt("-" + Math.abs(modalTransacAmount))
+            amountCleaned = parseFloat("-" + Math.abs(modalTransacAmount))
             appData.totalExpense += Math.abs(amountCleaned)
+            appData.totalExpense = Math.round((appData.totalExpense + Number.EPSILON) * 100) / 100
         }
         appData.balance += amountCleaned
+        appData.balance = Math.round((appData.balance + Number.EPSILON) * 100) / 100
         appData.transactionHistory.push({
             key: uuidv4(),
             title: modalTransacName,
@@ -65,6 +84,37 @@ const Expenses = () => {
         setModalTransacName("")
         setModalTransacAmount("")
         setModalTransacType(null)
+    }
+
+    function resetData(appData, navigation) {
+        Alert.alert(
+            "Reset Confirmation",
+            "Do you want to erase all data & start over? This action is destructive and cannot be undone.",
+            [
+                {
+                    text: "Cancel",
+                    style: "cancel"
+                },
+                {
+                    text: "Start Over",
+                    style: 'destructive',
+                    onPress: () => {
+                        appData.goalText = null
+                        appData.goalSaveAmount = null
+                        appData.fieldsSet = false
+                        appData.balance = null
+                        appData.totalIncome = null
+                        appData.totalExpense = null
+                        appData.transactionHistory = []
+                        MMKV.set('applicationData', JSON.stringify(appData))
+                        console.log('MMKV set')
+                        setAppData(JSON.parse(MMKV.getString('applicationData')))
+                        console.log('state set')
+                        navigation.push('Home')
+                    }
+                }
+            ]
+        )
     }
 
     return (
@@ -125,8 +175,26 @@ const Expenses = () => {
                 </View>
             </View>
 
-            <View style={styles.transacBtn}>
-                <CustomButton title="Add Transaction" onPress={() => setModalOpen(true)}></CustomButton>
+            <View style={styles.btnContainer}>
+                <View style={styles.transacBtn}>
+                    <TouchableOpacity
+                        style={styles.button}
+                        activeOpacity={.7}
+                        onPress={() => setModalOpen(true)}
+                    >
+                        <Text style={styles.btnText}>Add Transaction</Text>
+                    </TouchableOpacity>
+
+                </View>
+                <View style={styles.transacBtn}>
+                    <TouchableOpacity
+                        style={styles.button}
+                        activeOpacity={.7}
+                        onPress={() => resetData(appData, navigation)}
+                    >
+                        <Text style={styles.btnText}>Start Over</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
 
             <View>
@@ -135,10 +203,11 @@ const Expenses = () => {
                     width: 10,
                     height: 10
                 }}></Space>
-                <View style={{backgroundColor: 'blue'}}>
+                <View style={{ height: height * 0.32 }}>
                     <FlatList
                         data={appData.transactionHistory}
                         scrollEnabled={true}
+                        // style={{}}
                         renderItem={({ item }) => (
                             <TransactionItem item={item} onPress={() => deleteHandler(item.key, appData)}></TransactionItem>
                         )}
@@ -263,9 +332,8 @@ const styles = StyleSheet.create({
     boxIncome: {
         // color: "#FFF",
         paddingTop: height * 0.20 * 0.2,
-        paddingLeft: "8%",
-        paddingRight: "10%",
-        alignItems: 'center'
+        alignItems: 'center',
+        flex: 1
     },
     verticalLine: {
         marginTop: "5%",
@@ -275,13 +343,33 @@ const styles = StyleSheet.create({
     },
     boxExpense: {
         paddingTop: height * 0.20 * 0.2,
-        paddingLeft: "10%",
-        alignItems: "center"
+        alignItems: "center",
+        flex: 1
+    },
+    btnContainer: {
+        flexDirection: 'row'
     },
     transacBtn: {
         marginTop: 20,
         marginBottom: 20,
-        alignItems: "center"
+        alignItems: "center",
+        flex: 1
+    },
+    button: {
+        width: 180,
+        paddingVertical: 12,
+        paddingHorizontal: 12,
+        borderRadius: 4,
+        elevation: 3,
+        backgroundColor: '#275D01',
+    },
+    btnText: {
+        fontSize: 16,
+        lineHeight: 21,
+        fontWeight: 'bold',
+        letterSpacing: 0.25,
+        color: 'white',
+        textAlign: "center"
     },
     modalContainer: {
         flex: 1,

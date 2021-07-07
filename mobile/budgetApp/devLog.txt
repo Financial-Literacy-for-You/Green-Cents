@@ -1,6 +1,4 @@
 - need to link mmkv on ios
 - need to explain usage in home screen via btn
 - credits/about pg
-- start over page
 - balloon celebration
-- set home page as expenses page after it has been set
