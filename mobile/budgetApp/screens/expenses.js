@@ -8,6 +8,8 @@ import TransactionItem from '../components/TransactionItem'
 import { MMKV } from 'react-native-mmkv';
 import CurrencyInput from 'react-native-currency-input';
 import SegmentedControlTab from "react-native-segmented-control-tab";
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid'
 
 const { height, width } = Dimensions.get('window')
 
@@ -18,7 +20,7 @@ const Expenses = () => {
     const [modalTransacName, setModalTransacName] = useState('')
     const [modalTransacAmount, setModalTransacAmount] = useState('')
     const [modalTransacType, setModalTransacType] = useState(null)
-    
+
     function deleteHandler(key, appData) {
         var toBeDeleted = appData.transactionHistory.filter(transac => transac.key == key)[0]
         appData.transactionHistory = appData.transactionHistory.filter(transac => transac.key != key)
@@ -34,9 +36,36 @@ const Expenses = () => {
         setAppData(JSON.parse(MMKV.getString('applicationData')))
         console.log('state set')
         console.log(MMKV.getString('applicationData'))
+        // check if bal = goal
     }
 
-    
+    function addTransacHandler(appData, modalTransacName, modalTransacAmount, modalTransacType, setModalOpen) {
+        var amountCleaned = 0
+        console.log(modalTransacType) // 0, 1
+        if (modalTransacType == 0) { // income
+            amountCleaned = Math.abs(modalTransacAmount)
+            appData.totalIncome += amountCleaned
+
+        } else if (modalTransacType == 1) {
+            amountCleaned = parseInt("-" + Math.abs(modalTransacAmount))
+            appData.totalExpense += Math.abs(amountCleaned)
+        }
+        appData.balance += amountCleaned
+        appData.transactionHistory.push({
+            key: uuidv4(),
+            title: modalTransacName,
+            amount: amountCleaned
+        })
+        MMKV.set('applicationData', JSON.stringify(appData))
+        console.log('set')
+        setAppData(JSON.parse(MMKV.getString('applicationData')))
+        console.log('state set')
+        console.log(MMKV.getString('applicationData'))
+        setModalOpen(false)
+        setModalTransacName("")
+        setModalTransacAmount("")
+        setModalTransacType(null)
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -129,7 +158,7 @@ const Expenses = () => {
                             <Text style={styles.modalTitle}>Add Transaction</Text>
                         </View>
                         <View style={{ width: 0.33 * width }}>
-                            <TouchableOpacity style={styles.doneBtn}>
+                            <TouchableOpacity style={styles.doneBtn} onPress={() => addTransacHandler(appData, modalTransacName, modalTransacAmount, modalTransacType, setModalOpen)}>
                                 <Text style={styles.doneBtnText}>Done</Text>
                             </TouchableOpacity>
                         </View>
@@ -151,7 +180,7 @@ const Expenses = () => {
                     />
                     <CurrencyInput
                         style={styles.modalInput}
-                        placeholder="Amount to Save?"
+                        placeholder="Transaction Amount"
                         placeholderTextColor="#EBEBF54D"
                         value={modalTransacAmount}
                         onChangeValue={setModalTransacAmount}
