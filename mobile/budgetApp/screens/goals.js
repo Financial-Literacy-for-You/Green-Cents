@@ -8,22 +8,52 @@ import CustomStatusBar from '../components/CustomStatusBar';
 import CurrencyInput from 'react-native-currency-input';
 import { MMKV } from 'react-native-mmkv';
 
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid'
+
 // import { ThemeProvider, TextField } from 'react-native-ios-kit';
 
 function store(goalText, saveText, navigation) {
-    if (goalText == undefined || saveText == undefined || goalText == "" || saveText == "") {
-        Alert.alert('Make sure you enter values for both fields!')
+    if (goalText == undefined || saveText == undefined || goalText == "" || saveText == "" || "" + saveText == "0") {
+        Alert.alert('Make sure you enter values for both fields! & that fields are not 0')
     } else {
-        MMKV.set('goalText', goalText) // goals
-        console.log(`set ${goalText}`)
-        MMKV.set('saveText', "" + saveText) // amount to save
-        console.log(`set ${saveText}`)
-        MMKV.set('goalsSet', true)  // whether goals & amoutn to save have been set
-        console.log(`set ${true}`)
-        console.log(MMKV.getString('goalText'))
-        console.log(MMKV.getString('saveText'))
+        saveText = "" + saveText
+        var writeData = {
+            goalText: goalText,
+            goalSaveAmount: saveText.includes('.') ? saveText : saveText + '.00',
+            fieldsSet: true,
+            // balance: 0,
+            balance: 400,
+            // totalIncome: 0,
+            totalIncome: 500,
+            // totalExpense: 0,
+            totalExpense: 100,
+            // transactionHistory: []
+            transactionHistory: [{
+                // key: uuidv4(),
+                key: uuidv4(),
+                title: "cash",
+                amount: 500
+            }, {
+                // key: uuidv4(),
+                key: uuidv4(),
+                title: "arrested",
+                amount: -100
+            }]
+        }
+        MMKV.set('applicationData', JSON.stringify(writeData))
+        console.log('set')
+        console.log(JSON.parse(MMKV.getString('applicationData')))
+        // MMKV.set('goalText', goalText) // goals
+        // console.log(`set ${goalText}`)
+        // MMKV.set('saveText', "" + saveText) // amount to save
+        // console.log(`set ${saveText}`)
+        // MMKV.set('goalsSet', true)  // whether goals & amoutn to save have been set
+        // console.log(`set ${true}`)
+        // console.log(MMKV.getString('goalText'))
         // console.log(MMKV.getString('saveText'))
-        console.log(MMKV.getBoolean('goalsSet'))
+        // // console.log(MMKV.getString('saveText'))
+        // console.log(MMKV.getBoolean('goalsSet'))
         navigation.navigate('Expenses')
     }
 }

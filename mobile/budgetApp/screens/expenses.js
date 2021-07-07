@@ -1,5 +1,5 @@
-import React from 'react'
-import { SafeAreaView, View, Text, StyleSheet, Dimensions } from 'react-native'
+import React, { useState } from 'react'
+import { SafeAreaView, View, Text, StyleSheet, Dimensions, FlatList } from 'react-native'
 import Header from '../components/Header'
 import CustomStatusBar from '../components/CustomStatusBar'
 import CustomButton from '../components/Button'
@@ -10,6 +10,24 @@ import { MMKV } from 'react-native-mmkv';
 const { height } = Dimensions.get('window')
 
 const Expenses = () => {
+    const [appData, setAppData] = useState(JSON.parse(MMKV.getString('applicationData')))
+    // setAppData(JSON.parse(MMKV.getString('applicationData')))
+    function deleteHandler(key, appData) {
+        var toBeDeleted = appData.transactionHistory.filter(transac => transac.key == key)[0]
+        appData.transactionHistory = appData.transactionHistory.filter(transac => transac.key != key)
+        appData.balance -= toBeDeleted.amount
+        toBeDeleted.amount = "" + toBeDeleted.amount
+        if (toBeDeleted.amount.includes('-')) {
+            appData.totalExpense -= Math.abs(toBeDeleted.amount)
+        } else if (!toBeDeleted.amount.includes('-')) {
+            appData.totalIncome -= Math.abs(toBeDeleted.amount)
+        }
+        MMKV.set('applicationData', JSON.stringify(appData))
+        console.log('set')
+        setAppData(JSON.parse(MMKV.getString('applicationData')))
+        console.log('state set')
+        console.log(MMKV.getString('applicationData'))
+    }
     return (
         <SafeAreaView style={styles.container}>
             <CustomStatusBar></CustomStatusBar>
@@ -25,7 +43,7 @@ const Expenses = () => {
                         your balance
                     </Text>
                     <Text style={styles.balText}>
-                        $0
+                        ${appData.balance}
                     </Text>
                 </View>
 
@@ -35,7 +53,7 @@ const Expenses = () => {
                         your goal
                     </Text>
                     <Text style={styles.goalText}>
-                        ${MMKV.getString('saveText').includes('.') ? MMKV.getString('saveText') : MMKV.getString('saveText') + '.00'}
+                        ${appData.goalSaveAmount}
                     </Text>
                 </View>
             </View>
@@ -54,7 +72,7 @@ const Expenses = () => {
                             width: 20,
                             height: 20
                         }}></Space>
-                        <Text style={{ fontSize: 25, color: "#62CA8E" }}>$500.00</Text>
+                        <Text style={{ fontSize: 25, color: "#62CA8E" }}>${appData.totalIncome}</Text>
                     </View>
                     <View style={styles.verticalLine}></View>
                     <View style={styles.boxExpense}>
@@ -63,7 +81,7 @@ const Expenses = () => {
                             width: 20,
                             height: 20
                         }}></Space>
-                        <Text style={{ fontSize: 25, color: "#B84A48" }}>$240.00</Text>
+                        <Text style={{ fontSize: 25, color: "#B84A48" }}>${appData.totalExpense}</Text>
                     </View>
                 </View>
             </View>
@@ -79,7 +97,13 @@ const Expenses = () => {
                     height: 10
                 }}></Space>
                 <View>
-                    <TransactionItem></TransactionItem>
+                    <FlatList
+                        data={appData.transactionHistory}
+                        renderItem={({ item }) => (
+                            <TransactionItem item={item} onPress={() => deleteHandler(item.key, appData)}></TransactionItem>
+                        )}
+                    />
+
                 </View>
             </View>
 

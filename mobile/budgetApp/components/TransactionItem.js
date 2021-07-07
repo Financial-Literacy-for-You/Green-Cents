@@ -1,21 +1,27 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, Dimensions } from 'react-native';
-const { width } = Dimensions.get('window')
 
 const TransactionItem = (props) => {
-    const { onPress, title, amount, type } = props
+    const { item, appData, onPress} = props
+    var strAmount = "" + item.amount
+    // function deleteHandler(key, appData) {
+    //     appData.transactionHistory = appData.transactionHistory.filter(transac => transac.key != key)
+    //     MMKV.set('applicationData', JSON.stringify(appData))
+    //     console.log('set')
+    //     console.log(MMKV.getString('applicationData'))
+    // }
     return (
         <TouchableOpacity style={styles.box} onPress={onPress}>
-            <View style={{flexDirection: "row"}}>
+            <View style={{ flexDirection: "row" }}>
                 <View style={styles.boxTextView}>
                     <Text style={styles.title}>
-                        Cash
+                        {item.title}
                     </Text>
                     <Text style={styles.desc}>
-                        +500
+                        {strAmount.includes('-') ? strAmount : "+" + strAmount}
                     </Text>
                 </View>
-                <View style={styles.verticalLineGreen}></View>
+                <View style={strAmount.includes('-') ? styles.verticalLineRed : styles.verticalLineGreen}></View>
             </View>
         </TouchableOpacity>
     )
@@ -43,6 +49,10 @@ const styles = StyleSheet.create({
     verticalLineGreen: {
         width: 1,
         backgroundColor: "#62CA8E",
+    },
+    verticalLineRed: {
+        width: 1,
+        backgroundColor: "#B84A48",
     }
 })
 export default TransactionItem;
