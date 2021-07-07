@@ -20,7 +20,9 @@ const Home = ({ navigation }) => {
     }
   }
   function getStartedSelector() {
-    var appData = JSON.parse(MMKV.getString('applicationData'))
+    var appData = undefined
+    if (MMKV.getString('applicationData') != undefined) appData = JSON.parse(MMKV.getString('applicationData'))
+
     if (appData != undefined && appData.fieldsSet == true) {
       return (
         <CustomButton style={styles.button} title="View Expenses" onPress={() => navigationHandler('expenses')}></CustomButton>
