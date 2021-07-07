@@ -94,6 +94,7 @@ const Goals = ({ navigation }) => {
                 delimiter=","
                 separator="."
                 precision={2}
+                clearButtonMode="always"
                 onChangeText={(formattedValue) => {
                     console.log(`FORMATTED: ${formattedValue}`); // $2,310.46
                 }}

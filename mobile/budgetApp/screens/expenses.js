@@ -1,17 +1,24 @@
 import React, { useState } from 'react'
-import { SafeAreaView, View, Text, StyleSheet, Dimensions, FlatList } from 'react-native'
+import { SafeAreaView, View, Text, StyleSheet, Dimensions, FlatList, Modal, TouchableOpacity, Alert, TextInput } from 'react-native'
 import Header from '../components/Header'
 import CustomStatusBar from '../components/CustomStatusBar'
 import CustomButton from '../components/Button'
 import Space from '../components/Space'
 import TransactionItem from '../components/TransactionItem'
 import { MMKV } from 'react-native-mmkv';
+import CurrencyInput from 'react-native-currency-input';
+import SegmentedControlTab from "react-native-segmented-control-tab";
 
-const { height } = Dimensions.get('window')
+const { height, width } = Dimensions.get('window')
 
 const Expenses = () => {
     const [appData, setAppData] = useState(JSON.parse(MMKV.getString('applicationData')))
     // setAppData(JSON.parse(MMKV.getString('applicationData')))
+    const [modalOpen, setModalOpen] = useState(false)
+    const [modalTransacName, setModalTransacName] = useState('')
+    const [modalTransacAmount, setModalTransacAmount] = useState('')
+    const [modalTransacType, setModalTransacType] = useState(null)
+    
     function deleteHandler(key, appData) {
         var toBeDeleted = appData.transactionHistory.filter(transac => transac.key == key)[0]
         appData.transactionHistory = appData.transactionHistory.filter(transac => transac.key != key)
@@ -28,6 +35,9 @@ const Expenses = () => {
         console.log('state set')
         console.log(MMKV.getString('applicationData'))
     }
+
+    
+
     return (
         <SafeAreaView style={styles.container}>
             <CustomStatusBar></CustomStatusBar>
@@ -87,7 +97,7 @@ const Expenses = () => {
             </View>
 
             <View style={styles.transacBtn}>
-                <CustomButton title="Add Transaction"></CustomButton>
+                <CustomButton title="Add Transaction" onPress={() => setModalOpen(true)}></CustomButton>
             </View>
 
             <View>
@@ -106,6 +116,66 @@ const Expenses = () => {
 
                 </View>
             </View>
+
+            <Modal visible={modalOpen} animationType='slide'>
+                <View style={styles.modalContainer}>
+                    <View style={styles.appleModalHeader}>
+                        <View style={{ width: 0.33 * width }}>
+                            <TouchableOpacity style={styles.cancelBtn} onPress={() => setModalOpen(false)}>
+                                <Text style={styles.cancelBtnText}>Cancel</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={{ width: 0.33 * width }}>
+                            <Text style={styles.modalTitle}>Add Transaction</Text>
+                        </View>
+                        <View style={{ width: 0.33 * width }}>
+                            <TouchableOpacity style={styles.doneBtn}>
+                                <Text style={styles.doneBtnText}>Done</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                    <Space props={{
+                        width: 40,
+                        height: 40
+                    }}></Space>
+                    <Text style={styles.inputHeaderText}>
+                        Transaction Details
+                    </Text>
+                    <TextInput
+                        style={styles.modalInput}
+                        placeholder="Transaction Name"
+                        placeholderTextColor="#EBEBF54D"
+                        onChangeText={setModalTransacName}
+                        value={modalTransacName}
+                        clearButtonMode="always"
+                    />
+                    <CurrencyInput
+                        style={styles.modalInput}
+                        placeholder="Amount to Save?"
+                        placeholderTextColor="#EBEBF54D"
+                        value={modalTransacAmount}
+                        onChangeValue={setModalTransacAmount}
+                        prefix="$"
+                        delimiter=","
+                        separator="."
+                        precision={2}
+                        clearButtonMode="always"
+                        onChangeText={(formattedValue) => {
+                            console.log(`FORMATTED: ${formattedValue}`); // $2,310.46
+                        }}
+                    />
+                    <Space props={{
+                        width: 10,
+                        height: 10
+                    }}></Space>
+                    <SegmentedControlTab
+                        values={["Income", "Expense"]}
+                        selectedIndex={modalTransacType}
+                        onTabPress={setModalTransacType}
+                        tabStyle={{ backgroundColor: "#1D1D1D" }}
+                    />
+                </View>
+            </Modal>
 
         </SafeAreaView>
     )
@@ -183,6 +253,63 @@ const styles = StyleSheet.create({
         marginTop: 20,
         marginBottom: 20,
         alignItems: "center"
+    },
+    modalContainer: {
+        flex: 1,
+        backgroundColor: "#1D1D1D",
+        paddingTop: "5%",
+    },
+    appleModalHeader: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingBottom: "3%",
+        borderBottomColor: "#FFFFFF26",
+        borderBottomWidth: StyleSheet.hairlineWidth
+    },
+    cancelBtn: {
+        // backgroundColor: "blue",
+        width: 60,
+        flexDirection: "row",
+        marginRight: "auto"
+    },
+    cancelBtnText: {
+        color: "#007AFF",
+        paddingLeft: "5%",
+        flexDirection: "row",
+        marginRight: "auto",
+        fontSize: 17
+    },
+    modalTitle: {
+        color: "#FFF",
+        fontWeight: "bold",
+        textAlign: "center",
+        fontSize: 17
+    },
+    doneBtn: {
+        // backgroundColor: "blue",
+        width: 60,
+        flexDirection: "row",
+        marginLeft: "auto"
+    },
+    doneBtnText: {
+        color: "#007AFF",
+        flexDirection: "row",
+        marginLeft: "auto",
+        paddingRight: "5%",
+        fontSize: 17
+    },
+    inputHeaderText: {
+        color: "#EBEBF599",
+        textTransform: 'uppercase',
+        paddingLeft: 15.5,
+        paddingRight: 15.5,
+        paddingBottom: 12
+    },
+    modalInput: {
+        height: 40,
+        borderWidth: 1,
+        color: "#FFFFFF",
+        backgroundColor: "#000000"
     }
 })
 export default Expenses;
