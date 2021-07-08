@@ -11,9 +11,17 @@ import FlyDesc from './screens/flyDesc'
 import Budgeting from './screens/budgeting';
 import Expenses from './screens/expenses';
 import About from './screens/about'
+import * as Sentry from '@sentry/react-native';
 // render elemtn conditionally: https://stackoverflow.com/questions/44046037/if-else-statement-inside-jsx-reactjs
 
 const Stack = createStackNavigator();
+
+
+
+Sentry.init({ 
+  dsn: 'https://9f234fd92ade42f4a9a16294cfdfe1de@o915614.ingest.sentry.io/5856069', 
+});
+
 
 const App = () => {
   return (

@@ -1,6 +1,6 @@
 {
   "name": "budgetapp",
-  "version": "0.0.1",
+  "version": "1.0.0-beta",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -13,6 +13,7 @@
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.5",
+    "@sentry/react-native": "^2.6.0",
     "react": "17.0.1",
     "react-native": "0.64.2",
     "react-native-confetti-cannon": "^1.5.2",
