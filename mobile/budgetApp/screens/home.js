@@ -17,6 +17,8 @@ const Home = ({ navigation }) => {
       navigation.navigate('Budgeting')
     } else if (nav === 'expenses') {
       navigation.navigate('Expenses')
+    } else if (nav === 'about') {
+      navigation.navigate('About')
     }
   }
   function getStartedSelector() {
@@ -25,11 +27,11 @@ const Home = ({ navigation }) => {
 
     if (appData != undefined && appData.fieldsSet == true) {
       return (
-        <CustomButton style={styles.button} title="View Expenses" onPress={() => navigationHandler('expenses')}></CustomButton>
+        <CustomButton title="View Expenses" onPress={() => navigationHandler('expenses')}></CustomButton>
       )
     } else if (appData == undefined || appData.fieldsSet == false) {
       return (
-        <CustomButton style={styles.button} title="Get Started" onPress={() => navigationHandler('goals')}></CustomButton>
+        <CustomButton title="Get Started" onPress={() => navigationHandler('goals')}></CustomButton>
       )
     }
   }
@@ -43,12 +45,17 @@ const Home = ({ navigation }) => {
         {getStartedSelector(navigationHandler)}
       </View>
       <View style={styles.bottomBtnContainer}>
-        <CustomButton style={styles.button} title="Who are We?" onPress={() => navigationHandler('flydesc')}></CustomButton>
+        <CustomButton title="Who are We?" onPress={() => navigationHandler('flydesc')}></CustomButton>
         <Space props={{
           width: 20,
           height: 20
         }}></Space>
-        <CustomButton style={styles.button} title="What is Budgeting?" onPress={() => navigationHandler('budgeting')}></CustomButton>
+        <CustomButton title="What is Budgeting?" onPress={() => navigationHandler('budgeting')}></CustomButton>
+        <Space props={{
+          width: 20,
+          height: 20
+        }}></Space>
+        <CustomButton title="About this App" onPress={() => navigationHandler('about')}></CustomButton>
       </View>
 
     </SafeAreaView>
@@ -75,14 +82,8 @@ const styles = StyleSheet.create({
   },
   bottomBtnContainer: {
     alignItems: "center",
-    marginTop: "30%"
-  },
-
-
-
-
-
-
+    marginTop: "25%"
+  }
 })
 
 export default Home;

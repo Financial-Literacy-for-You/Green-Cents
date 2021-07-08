@@ -1,4 +1,7 @@
 - need to link mmkv on ios
 - need to explain usage in home screen via btn
 - credits/about pg
-- balloon celebration
+
+
+credits:
+

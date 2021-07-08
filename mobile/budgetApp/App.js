@@ -10,6 +10,7 @@ import Goals from './screens/goals'
 import FlyDesc from './screens/flyDesc'
 import Budgeting from './screens/budgeting';
 import Expenses from './screens/expenses';
+import About from './screens/about'
 // render elemtn conditionally: https://stackoverflow.com/questions/44046037/if-else-statement-inside-jsx-reactjs
 
 const Stack = createStackNavigator();
@@ -23,6 +24,7 @@ const App = () => {
         <Stack.Screen name="FlyDesc" component={FlyDesc} options={{ headerShown: false }} />
         <Stack.Screen name="Budgeting" component={Budgeting} options={{ headerShown: false }} />
         <Stack.Screen name="Expenses" component={Expenses} options={{ headerShown: false }} />
+        <Stack.Screen name="About" component={About} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
