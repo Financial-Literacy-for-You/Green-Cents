@@ -8,7 +8,6 @@ import CustomStatusBar from '../components/CustomStatusBar';
 import CurrencyInput from 'react-native-currency-input';
 import { MMKV } from 'react-native-mmkv';
 
-// import { ThemeProvider, TextField } from 'react-native-ios-kit';
 
 function store(goalText, saveText, navigation, goalSetText, saveSetText) {
     if (goalText == undefined || saveText == undefined || goalText == "" || saveText == "" || "" + saveText == "0") {
@@ -56,8 +55,8 @@ function store(goalText, saveText, navigation, goalSetText, saveSetText) {
             index: 0,
             routes: [
                 {
+                    name: 'Home',
                     name: 'Expenses',
-                    name: 'Home'
                 }
             ]
         })

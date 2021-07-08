@@ -23,12 +23,12 @@ const About = ({ navigation }) => {
                 © Financial Literacy for You. All rights reserved.{"\n\n"}
             </Text>
             <View style={styles.btnContainer}>
-                <CustomButton title="Privacy Policy" onPress={() => Linking.openURL('https://www.financialliteracyforyou.org/')}></CustomButton>
+                <CustomButton title="Privacy Policy" onPress={() => Linking.openURL('https://financialliteracyforyou.org/app-legal')}></CustomButton>
                 <Space props={{
                     width: 20,
                     height: 20
                 }}></Space>
-                <CustomButton title="Terms of Use" onPress={() => Linking.openURL('https://www.financialliteracyforyou.org/')}></CustomButton>
+                <CustomButton title="Terms of Use" onPress={() => Linking.openURL('https://financialliteracyforyou.org/app-legal')}></CustomButton>
                 <Space props={{
                     width: 20,
                     height: 20

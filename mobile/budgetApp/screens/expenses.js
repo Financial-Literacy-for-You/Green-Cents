@@ -44,7 +44,7 @@ const Expenses = ({ navigation }) => {
         console.log('state set')
         console.log(MMKV.getString('applicationData'))
 
-        if ((appData.balance == appData.goalSaveAmount)) {
+        if ((appData.balance >= appData.goalSaveAmount)) {
             if (appData.balance != null && appData.balance != 0) {
                 setSuccessModalVisible(true)
                 setConfettiVisible(true)
@@ -67,7 +67,20 @@ const Expenses = ({ navigation }) => {
             return;
         }
         var amountCleaned = 0
-        console.log(modalTransacType) // 0, 1
+        console.log(`TRANSAC TYPE ${modalTransacType}`) // 0, 1
+        if (modalTransacType == null || modalTransacAmount == null || modalTransacName == null) {
+            Alert.alert(
+                'Check Your Values!',
+                'Make sure you enter values for all fields!',
+                [
+                    {
+                        text: "OK",
+                        style: "default"
+                    }
+                ]
+            )
+            return;
+        }
         if (modalTransacType == 0) { // income
             amountCleaned = Math.abs(modalTransacAmount)
             appData.totalIncome += amountCleaned
@@ -94,7 +107,7 @@ const Expenses = ({ navigation }) => {
         setModalTransacName("")
         setModalTransacAmount("")
         setModalTransacType(null)
-        if ((appData.balance == appData.goalSaveAmount)) {
+        if ((appData.balance >= appData.goalSaveAmount)) {
             if (appData.balance != null && appData.balance != 0) {
                 setSuccessModalVisible(true)
                 setConfettiVisible(true)
@@ -236,7 +249,7 @@ const Expenses = ({ navigation }) => {
                     origin={{ x: -10, y: 0 }}
                     fadeOut={true}
                 />}
-                <View style={styles.modalCenteredView}>
+                <SafeAreaView style={styles.modalCenteredView}>
                     <Modal
                         animationType="slide"
                         transparent={true}
@@ -256,10 +269,10 @@ const Expenses = ({ navigation }) => {
                             </Text>
                         </View>
                     </Modal>
-                </View>
+                </SafeAreaView>
 
             <Modal visible={modalOpen} animationType='slide'>
-                <View style={styles.modalContainer}>
+                <SafeAreaView style={styles.modalContainer}>
                     <View style={styles.appleModalHeader}>
                         <View style={{ width: 0.33 * width }}>
                             <TouchableOpacity style={styles.cancelBtn} onPress={() => setModalOpen(false)}>
@@ -315,7 +328,7 @@ const Expenses = ({ navigation }) => {
                         onTabPress={setModalTransacType}
                         tabStyle={{ backgroundColor: "#1D1D1D" }}
                     />
-                </View>
+                </SafeAreaView>
             </Modal>
 
         </SafeAreaView>

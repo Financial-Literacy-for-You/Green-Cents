@@ -6,7 +6,7 @@ const CustomStatusBar = () => {
         <StatusBar
             animated={true}
             backgroundColor="#1D1D1D"
-            barStyle="default"
+            barStyle="light-content"
         />
     )
 }
