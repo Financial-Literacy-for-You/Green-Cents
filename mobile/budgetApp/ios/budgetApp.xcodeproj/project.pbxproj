@@ -10,8 +10,8 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		38DB6C1A26984D7700FAAF1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38DB6C1926984D7700FAAF1E /* LaunchScreen.storyboard */; };
 		3F57E513C768BBCF7B24DB8D /* libPods-budgetApp-budgetAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E28EE783F95898518F4EAC6 /* libPods-budgetApp-budgetAppTests.a */; };
-		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		D8DCDD757B31961906AFC6D1 /* libPods-budgetApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B58851DD000B094BAD39F60 /* libPods-budgetApp.a */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +36,8 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = budgetApp/main.m; sourceTree = "<group>"; };
 		16A3994174F24509900588EC /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		2F07193B1C2F44138AAF6694 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
+		38C7386A26980D9E00D54F42 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = budgetApp/Info.plist; sourceTree = "<group>"; };
+		38DB6C1926984D7700FAAF1E /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = budgetApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E28EE783F95898518F4EAC6 /* libPods-budgetApp-budgetAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-budgetApp-budgetAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D78686FAB8C2C04754D50D6 /* Pods-budgetApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-budgetApp.debug.xcconfig"; path = "Target Support Files/Pods-budgetApp/Pods-budgetApp.debug.xcconfig"; sourceTree = "<group>"; };
 		545C0B780045EE56E569D39E /* Pods-budgetApp-budgetAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-budgetApp-budgetAppTests.debug.xcconfig"; path = "Target Support Files/Pods-budgetApp-budgetAppTests/Pods-budgetApp-budgetAppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -43,7 +45,6 @@
 		6FB79FF764984B8E9AB6E3B9 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		71E7201DC25B46F592F60FE0 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		8149D18A52EB4BAFA13929A2 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = budgetApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B58851DD000B094BAD39F60 /* libPods-budgetApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-budgetApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96C67A6597F616FC7A28D4F1 /* Pods-budgetApp-budgetAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-budgetApp-budgetAppTests.release.xcconfig"; path = "Target Support Files/Pods-budgetApp-budgetAppTests/Pods-budgetApp-budgetAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		971A0E50A79D45CFA6BD292D /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
@@ -82,10 +83,11 @@
 		13B07FAE1A68108700A75B9A /* budgetApp */ = {
 			isa = PBXGroup;
 			children = (
+				38DB6C1926984D7700FAAF1E /* LaunchScreen.storyboard */,
+				38C7386A26980D9E00D54F42 /* Info.plist */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
-				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = budgetApp;
@@ -262,8 +264,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				38DB6C1A26984D7700FAAF1E /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,7 +553,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.financialliteracyforyou.greencents;
 				PRODUCT_NAME = budgetApp;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -582,7 +584,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.financialliteracyforyou.greencents;
 				PRODUCT_NAME = budgetApp;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

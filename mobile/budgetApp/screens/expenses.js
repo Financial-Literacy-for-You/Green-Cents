@@ -226,13 +226,13 @@ const Expenses = ({ navigation }) => {
                 </View>
             </View>
 
-            <View>
+            <View style={{flex: 10}}>
                 <Text style={{ textTransform: "uppercase", color: "#EBEBF599", paddingLeft: "3%", fontSize: 25 }}>History</Text>
                 <Space props={{
                     width: 10,
                     height: 10
                 }}></Space>
-                <View style={{ height: height * 0.32 }}>
+                <SafeAreaView style={{justifyContent: "space-around"}}>
                     <FlatList
                         data={appData.transactionHistory}
                         scrollEnabled={true}
@@ -241,35 +241,35 @@ const Expenses = ({ navigation }) => {
                             <TransactionItem item={item} onPress={() => deleteHandler(item.key, appData)}></TransactionItem>
                         )}
                     />
-                </View>
+                </SafeAreaView>
             </View>
 
-                {confettiVisible && <ConfettiCannon
-                    count={200}
-                    origin={{ x: -10, y: 0 }}
-                    fadeOut={true}
-                />}
-                <SafeAreaView style={styles.modalCenteredView}>
-                    <Modal
-                        animationType="slide"
-                        transparent={true}
-                        visible={successModal}
-                        // visible={true}
-                    >
-                        <View style={styles.successModalView}>
-                            <Icon
-                            style={{marginLeft: "auto"}}
+            {confettiVisible && <ConfettiCannon
+                count={200}
+                origin={{ x: -10, y: 0 }}
+                fadeOut={true}
+            />}
+            <SafeAreaView style={styles.modalCenteredView}>
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={successModal}
+                // visible={true}
+                >
+                    <View style={styles.successModalView}>
+                        <Icon
+                            style={{ marginLeft: "auto" }}
                             name='ios-close'
                             size={30}
                             color="#FFF"
                             onPress={() => setSuccessModalVisible(false)}
-                            />
-                            <Text style={{textAlign: "center", color: "#FFF"}}>
-                                <Text style={{fontWeight: "bold", fontSize: 20}}>Success!</Text>{"\n\n"}Congratulations on reaching your goal:{"\n"}<Text style={{fontWeight: "bold"}}>{appData.goalText}</Text>{"\n\n"}Press the "Start Over" button to set another goal!
-                            </Text>
-                        </View>
-                    </Modal>
-                </SafeAreaView>
+                        />
+                        <Text style={{ textAlign: "center", color: "#FFF" }}>
+                            <Text style={{ fontWeight: "bold", fontSize: 20 }}>Success!</Text>{"\n\n"}Congratulations on reaching your goal:{"\n"}<Text style={{ fontWeight: "bold" }}>{appData.goalText}</Text>{"\n\n"}Press the "Start Over" button to set another goal!
+                        </Text>
+                    </View>
+                </Modal>
+            </SafeAreaView>
 
             <Modal visible={modalOpen} animationType='slide'>
                 <SafeAreaView style={styles.modalContainer}>
@@ -412,8 +412,8 @@ const styles = StyleSheet.create({
         flex: 1
     },
     button: {
-        width: 180,
-        paddingVertical: 12,
+        width: height < 667 ? 155 : 180,
+        paddingVertical: height < 667 ? 5 : 12,
         paddingHorizontal: 12,
         borderRadius: 4,
         elevation: 3,
@@ -499,13 +499,13 @@ const styles = StyleSheet.create({
         alignItems: "center",
         shadowColor: "#FFF",
         shadowOffset: {
-          width: 0,
-          height: 3
+            width: 0,
+            height: 3
         },
         shadowOpacity: 0.25,
         shadowRadius: 4,
         elevation: 5
-        
+
     }
 })
 export default Expenses;

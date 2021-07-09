@@ -1,5 +1,7 @@
 import React from 'react'
-import { StyleSheet, Text, Pressable, Platform, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, Pressable, Platform, TouchableOpacity, Dimensions } from 'react-native'
+
+const { height } = Dimensions.get('window')
 
 const Button = (props) => {
     const { onPress, title } = props;
@@ -17,7 +19,7 @@ const Button = (props) => {
 const styles = StyleSheet.create({
     button: {
         width: 242,
-        paddingVertical: 12,
+        paddingVertical: height < 667 ? 5 : 12,
         paddingHorizontal: 32,
         borderRadius: 4,
         elevation: 3,

@@ -1,11 +1,13 @@
 import React from 'react';
-import { View, StyleSheet, Image, Alert, SafeAreaView, NativeAppEventEmitter, } from 'react-native'
+import { View, StyleSheet, Image, Alert, SafeAreaView, NativeAppEventEmitter, Dimensions } from 'react-native'
 import CustomButton from '../components/Button'
 import CustomStatusBar from '../components/CustomStatusBar'
 import Space from '../components/Space'
 import { MMKV } from 'react-native-mmkv';
 
 // render elemtn conditionally: https://stackoverflow.com/questions/44046037/if-else-statement-inside-jsx-reactjs
+
+const { height } = Dimensions.get('window')
 
 const Home = ({ navigation }) => {
   const navigationHandler = (nav) => {
@@ -44,7 +46,7 @@ const Home = ({ navigation }) => {
       <View style={styles.btnContainer}>
         {getStartedSelector(navigationHandler)}
       </View>
-      <View style={styles.bottomBtnContainer}>
+      <SafeAreaView style={styles.bottomBtnContainer}>
         <CustomButton title="Who are We?" onPress={() => navigationHandler('flydesc')}></CustomButton>
         <Space props={{
           width: 20,
@@ -56,7 +58,7 @@ const Home = ({ navigation }) => {
           height: 20
         }}></Space>
         <CustomButton title="About this App" onPress={() => navigationHandler('about')}></CustomButton>
-      </View>
+      </SafeAreaView>
 
     </SafeAreaView>
   );
@@ -78,11 +80,11 @@ const styles = StyleSheet.create({
   },
   btnContainer: {
     alignItems: "center",
-    marginTop: "35%"
+    marginTop: height < 736 ? height < 667 ? 0.08 * height : 0.15 * height : "35%" // if less than 736 (<5.5 in) check if screen is 4in (<667), if not apply the 5.5in theme, otherwise aapply 4in theme. if not less than 5.5, apply normal theme
   },
   bottomBtnContainer: {
     alignItems: "center",
-    marginTop: "25%"
+    marginTop: height < 736 ? height < 667 ? 0.30 * 0.15 * height : 0.50 * 0.15 * height : "20%"
   }
 })
 
