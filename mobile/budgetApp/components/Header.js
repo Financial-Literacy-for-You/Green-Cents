@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 const { height } = Dimensions.get('window')
 
 function headerHandler(back, title, onPressAction) {
+    const adjustDueToTextLen = title.length > 15 && height < 667 // if len > 15, adjustment needed on 4in screens
     if (back) {
         return (
             <View style={styles.header}>
@@ -14,7 +15,7 @@ function headerHandler(back, title, onPressAction) {
                 >
                     <Text style={styles.backText}> <Icon name="ios-chevron-back" color="#FFF"></Icon> Back</Text>
                 </TouchableOpacity>
-                <Text style={styles.headerTextBack}>
+                <Text style={adjustDueToTextLen ? styles.headerTextSmall : styles.headerTextBack}>
                     {title}
                 </Text>
             </View>
@@ -55,7 +56,14 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         fontSize: 34,
         paddingLeft: 20,
-        paddingTop: height * 0.17 * 0.15
+        paddingTop: height < 667 ? 0 : height * 0.17 * 0.15 // only need to adjust for 4in screens
+    },
+    headerTextSmall: {
+        color: "#FFFFFF",
+        fontWeight: "bold",
+        fontSize: 30,
+        paddingLeft: 20,
+        paddingTop: height < 667 ? 0 : height * 0.17 * 0.15 // only need to adjust for 4in screens
     },
     backBtn: {
         // backgroundColor: "blue",
