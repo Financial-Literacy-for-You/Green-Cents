@@ -14,7 +14,7 @@ const Budgeting = ({ navigation }) => {
                 height: 20
             }}></Space>
             <Text style={styles.text}>
-                A budget is a spending plan for income and expenses over a certain period of time for reaching financial goals. {"\n\n"}Use this app to help you set up a budget and track your spending.
+                A budget is a spending plan for income and expenses over a certain period of time for reaching financial goals. {"\n\n"}Use this app to help you set up a budget and track your spending.{"\n\n"}Click the "Get Started" button & follow the prompts to set up a budget. You can add transactions & delete them (by tapping on an item in History) on the Expenses screen.
             </Text>
         </SafeAreaView>
     )
