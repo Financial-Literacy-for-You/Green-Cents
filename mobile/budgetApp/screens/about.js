@@ -15,9 +15,9 @@ const About = ({ navigation }) => {
         <SafeAreaView style={styles.container}>
             <CustomStatusBar></CustomStatusBar>
             <Header title="About" back={true} onPressAction={() => navigation.navigate('Home')}></Header>
-            <Image source={require('../assets/appLogos/white_logo_transparent_background.png')} style={styles.img}></Image>
+            <Image source={require('../assets/flyWhiteLogo.png')} style={styles.img}></Image>
             <Text style={styles.text}>
-                Financial Literacy for You Green Cents{"\n\n"}
+                {"\n"}Financial Literacy for You Green Cents{height < 667 ? "\n" : "\n\n"}
                 Version {pkg.version} (Software Build {build.build}){"\n"}
                 © Financial Literacy for You. All rights reserved.{height < 667 ? "" : "\n\n"}
             </Text>
@@ -32,7 +32,7 @@ const About = ({ navigation }) => {
                     width: spaceDims,
                     height: spaceDims
                 }}></Space>
-                <CustomButton title="Support" onPress={() => Linking.openURL('mailto:jfang.cv.ca.us@gmail.com')}></CustomButton>
+                <CustomButton title="Support / Feedback" onPress={() => Linking.openURL('mailto:jfang.cv.ca.us@gmail.com')}></CustomButton>
                 <Space props={{
                     width: spaceDims,
                     height: spaceDims
@@ -49,9 +49,12 @@ const styles = StyleSheet.create({
         backgroundColor: "#1D1D1D"
     },
     img: {
-        width: 329,
-        height: 180,
-        alignSelf: "center"
+        // width: 329,
+        width: 235,
+        // height: 180,
+        height: 178,
+        alignSelf: "center",
+        marginTop: "2%"
     },
     text: {
         color: "#FFF",

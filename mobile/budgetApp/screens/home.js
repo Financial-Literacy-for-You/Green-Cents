@@ -41,7 +41,7 @@ const Home = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <CustomStatusBar></CustomStatusBar>
       <View style={styles.imgContainer}>
-        <Image source={require('../assets/flyWhiteLogo.png')} style={styles.img}></Image>
+        <Image source={require('../assets/appLogos/white_logo_transparent_background.png')} style={styles.img}></Image>
       </View>
       <View style={styles.btnContainer}>
         {getStartedSelector(navigationHandler)}
@@ -75,8 +75,10 @@ const styles = StyleSheet.create({
     marginTop: "15%", // 144/926
   },
   img: {
-    width: 249,
-    height: 189,
+    width: 329,
+    height: 180
+    // width: 249,
+    // height: 189,
   },
   btnContainer: {
     alignItems: "center",

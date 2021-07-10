@@ -139,7 +139,16 @@ const Expenses = ({ navigation }) => {
                         console.log('MMKV set')
                         setAppData(JSON.parse(MMKV.getString('applicationData')))
                         console.log('state set')
-                        navigation.push('Home')
+                        navigation.reset({
+                            index: 0,
+                            routes: [
+                                {
+                                    name: 'Expenses',
+                                    name: 'Home',
+                                }
+                            ]
+                        })
+                        // navigation.push('Home')
                     }
                 }
             ]
@@ -314,9 +323,9 @@ const Expenses = ({ navigation }) => {
                         separator="."
                         precision={2}
                         clearButtonMode="always"
-                        onChangeText={(formattedValue) => {
-                            console.log(`FORMATTED: ${formattedValue}`); // $2,310.46
-                        }}
+                        // onChangeText={(formattedValue) => {
+                        //     console.log(`FORMATTED: ${formattedValue}`); // $2,310.46
+                        // }}
                     />
                     <Space props={{
                         width: 10,
