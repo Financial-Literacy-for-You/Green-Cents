@@ -39,10 +39,10 @@ const Expenses = ({ navigation }) => {
             appData.totalIncome = Math.round((appData.totalIncome + Number.EPSILON) * 100) / 100
         }
         MMKV.set('applicationData', JSON.stringify(appData))
-        console.log('set')
+        // console.log('set')
         setAppData(JSON.parse(MMKV.getString('applicationData')))
-        console.log('state set')
-        console.log(MMKV.getString('applicationData'))
+        // console.log('state set')
+        // console.log(MMKV.getString('applicationData'))
 
         if ((appData.balance >= appData.goalSaveAmount)) {
             if (appData.balance != null && appData.balance != 0) {
@@ -67,7 +67,7 @@ const Expenses = ({ navigation }) => {
             return;
         }
         var amountCleaned = 0
-        console.log(`TRANSAC TYPE ${modalTransacType}`) // 0, 1
+        // console.log(`TRANSAC TYPE ${modalTransacType}`) // 0, 1
         if (modalTransacType == null || modalTransacAmount == null || modalTransacName == null) {
             Alert.alert(
                 'Check Your Values!',
@@ -99,10 +99,10 @@ const Expenses = ({ navigation }) => {
             amount: amountCleaned
         })
         MMKV.set('applicationData', JSON.stringify(appData))
-        console.log('set')
+        // console.log('set')
         setAppData(JSON.parse(MMKV.getString('applicationData')))
-        console.log('state set')
-        console.log(MMKV.getString('applicationData'))
+        // console.log('state set')
+        // console.log(MMKV.getString('applicationData'))
         setModalOpen(false)
         setModalTransacName("")
         setModalTransacAmount("")
@@ -136,9 +136,9 @@ const Expenses = ({ navigation }) => {
                         appData.totalExpense = null
                         appData.transactionHistory = []
                         MMKV.set('applicationData', JSON.stringify(appData))
-                        console.log('MMKV set')
+                        // console.log('MMKV set')
                         setAppData(JSON.parse(MMKV.getString('applicationData')))
-                        console.log('state set')
+                        // console.log('state set')
                         navigation.reset({
                             index: 0,
                             routes: [

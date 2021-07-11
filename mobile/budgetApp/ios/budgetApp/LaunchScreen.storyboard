@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina6_7" orientation="portrait" appearance="light"/>
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -13,35 +13,33 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GreenCentsLogo" translatesAutoresizingMaskIntoConstraints="NO" id="V2G-tc-5Gk">
-                                <rect key="frame" x="53.666666666666657" y="382.33333333333331" width="321" height="171.33333333333331"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GreenCentsLogo" translatesAutoresizingMaskIntoConstraints="NO" id="XvV-oE-708">
+                                <rect key="frame" x="36.5" y="218" width="247.5" height="132"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="V2G-tc-5Gk" secondAttribute="height" multiplier="15:8" id="G5h-ah-no4"/>
+                                    <constraint firstAttribute="width" secondItem="XvV-oE-708" secondAttribute="height" multiplier="15:8" id="SCy-Eg-PgU"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" red="0.11372549019607843" green="0.11372549019607843" blue="0.11372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="V2G-tc-5Gk" secondAttribute="height" multiplier="5:2" id="3F2-Oz-e7j"/>
-                            <constraint firstItem="V2G-tc-5Gk" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="7S2-9c-rqe"/>
-                            <constraint firstItem="V2G-tc-5Gk" firstAttribute="centerY" secondItem="Bcu-3y-fUS" secondAttribute="centerY" id="Ycu-FF-caM"/>
-                            <constraint firstItem="V2G-tc-5Gk" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Yz4-4x-GQ8"/>
-                            <constraint firstAttribute="width" secondItem="V2G-tc-5Gk" secondAttribute="height" multiplier="5:2" id="dqP-yJ-UUh"/>
-                            <constraint firstItem="V2G-tc-5Gk" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="k7f-v3-h8b"/>
-                            <constraint firstItem="V2G-tc-5Gk" firstAttribute="centerX" secondItem="Bcu-3y-fUS" secondAttribute="centerX" id="lpe-Ia-BAv"/>
+                            <constraint firstAttribute="width" secondItem="XvV-oE-708" secondAttribute="height" multiplier="80:33" id="OKQ-C1-LiL"/>
+                            <constraint firstAttribute="width" secondItem="XvV-oE-708" secondAttribute="width" multiplier="1.29293" id="TFm-Uh-btT"/>
+                            <constraint firstItem="XvV-oE-708" firstAttribute="centerY" secondItem="Bcu-3y-fUS" secondAttribute="centerY" id="aJO-u8-wg9"/>
+                            <constraint firstItem="XvV-oE-708" firstAttribute="centerX" secondItem="Bcu-3y-fUS" secondAttribute="centerX" id="gxr-Dn-rfU"/>
+                            <constraint firstAttribute="height" secondItem="XvV-oE-708" secondAttribute="height" multiplier="4.30303" id="o1d-Np-ghP"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+            <point key="canvasLocation" x="50.625" y="373.94366197183098"/>
         </scene>
     </scenes>
     <resources>
-        <image name="GreenCentsLogo" width="1133.3333740234375" height="619.33331298828125"/>
+        <image name="GreenCentsLogo" width="1700" height="929"/>
     </resources>
 </document>
