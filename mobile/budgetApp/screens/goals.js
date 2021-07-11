@@ -48,8 +48,8 @@ function store(goalText, saveText, navigation, goalSetText, saveSetText) {
             // }]
         }
         MMKV.set('applicationData', JSON.stringify(writeData))
-        console.log('set')
-        console.log(JSON.parse(MMKV.getString('applicationData')))
+        // console.log('set')
+        // console.log(JSON.parse(MMKV.getString('applicationData')))
 
         navigation.reset({
             index: 0,
@@ -102,9 +102,9 @@ const Goals = ({ navigation }) => {
                 separator="."
                 precision={2}
                 clearButtonMode="always"
-                onChangeText={(formattedValue) => {
-                    console.log(`FORMATTED: ${formattedValue}`); // $2,310.46
-                }}
+                // onChangeText={(formattedValue) => {
+                //     console.log(`FORMATTED: ${formattedValue}`); // $2,310.46
+                // }}
             />
 
             {/* <CustomButton title="Next"></CustomButton> */}
