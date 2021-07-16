@@ -1,0 +1,4 @@
+
+*.keystore
+
+mobile/budgetApp/android/gradle.properties
