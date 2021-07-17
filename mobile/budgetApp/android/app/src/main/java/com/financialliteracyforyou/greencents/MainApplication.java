@@ -1,4 +1,4 @@
-package com.budgetapp;
+package com.financialliteracyforyou.greencents;
 
 import android.app.Application;
 import android.content.Context;
