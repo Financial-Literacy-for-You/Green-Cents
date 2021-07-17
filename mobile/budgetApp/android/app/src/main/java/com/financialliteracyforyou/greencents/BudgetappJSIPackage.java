@@ -1,4 +1,4 @@
-package com.budgetapp;
+package com.financialliteracyforyou.greencents;
 
 import com.facebook.react.bridge.JSIModuleSpec;
         import com.facebook.react.bridge.JavaScriptContextHolder;

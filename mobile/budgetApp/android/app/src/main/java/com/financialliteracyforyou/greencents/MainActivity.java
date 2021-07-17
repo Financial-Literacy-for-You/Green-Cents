@@ -1,4 +1,4 @@
-package com.budgetapp;
+package com.financialliteracyforyou.greencents;
 
 import com.facebook.react.ReactActivity;
 
