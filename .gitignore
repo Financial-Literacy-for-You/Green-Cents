@@ -2,3 +2,5 @@
 *.keystore
 
 mobile/budgetApp/android/gradle.properties
+
+.DS_Store
