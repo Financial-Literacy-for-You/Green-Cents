@@ -1,7 +1,11 @@
 # Green Cents
 Budget, Expense Tracker by Financial Literacy for You
 
-(Download Link Coming)
+### [Download](http://hyperurl.co/greencents)
+
+![Issues](https://img.shields.io/github/issues/Financial-Literacy-for-You/Green-Cents?style=for-the-badge)
+![License](https://img.shields.io/github/license/Financial-Literacy-for-You/Green-Cents?style=for-the-badge)
+![Twitter](https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2FFinancial-Literacy-for-You%2FGreen-Cents?style=for-the-badge)
 
 ## Features
 - Set and achieve personal financial goals
